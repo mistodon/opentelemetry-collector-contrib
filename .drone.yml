@@ -1,0 +1,39 @@
+pipeline:
+  build:
+    image: golang:1.17-alpine
+    commands:
+      - apk add make
+      - GOOS=linux GOARCH=amd64 make otelcontribcol
+      - cp ./bin/otelcontribcol_linux_amd64 ./cmd/otelcontribcol/otelcontribcol
+    when:
+      branch: ecr-publish
+
+  ecr-publish:
+    image: 325714046698.dkr.ecr.eu-west-1.amazonaws.com/drone-plugins/drone-ecr
+    repo: open-telemetry/opentelemetry-collector-contrib
+    create_repository: True
+    storage_driver: overlay
+    dockerfile: cmd/otelcontribcol/Dockerfile
+    context: cmd/otelcontribcol
+    tag:
+      - latest
+      - 0.57.0-preview
+      - gap-custom-build-${DRONE_BUILD_NUMBER}
+    lifecycle:
+      - rulePriority: 1
+        description: "keep 5 last release images"
+        tagStatus: tagged
+        tagPrefixList: ["gap-custom-build"]
+        countType: imageCountMoreThan
+        countNumber: 5
+    exposed_accounts:
+      - '426038483100'  # cellsdev-1
+      - '144561895719'  # cellsdev-2
+      - '677744330604'  # github-actions-1
+    region:
+      - eu-west-1
+      - eu-central-1
+    when:
+      branch: ecr-publish
+      event:
+        exclude: pull_request
