@@ -136,59 +136,51 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePt(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePt(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initInt64Pt(m.Gauge().DataPoints().AppendEmpty())
+					initInt64Pt(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					m.Sum().SetAggregationTemporality(pmetric.MetricAggregationTemporalityCumulative)
 					initDoublePt(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					m.Sum().SetAggregationTemporality(pmetric.MetricAggregationTemporalityCumulative)
 					initInt64Pt(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("delta_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					m.Sum().SetAggregationTemporality(pmetric.MetricAggregationTemporalityDelta)
 					initDoublePt(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("delta_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					m.Sum().SetAggregationTemporality(pmetric.MetricAggregationTemporalityDelta)
 					initInt64Pt(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_sum_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(false)
+					m.SetEmptySum().SetIsMonotonic(false)
 					initDoublePt(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_sum_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(false)
+					m.SetEmptySum().SetIsMonotonic(false)
 					initInt64Pt(m.Sum().DataPoints().AppendEmpty())
 				}
 
@@ -214,27 +206,23 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initInt64PtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initInt64PtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					initDoublePtWithLabels(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					initInt64PtWithLabels(m.Sum().DataPoints().AppendEmpty())
 				}
 
@@ -253,10 +241,10 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				out := pmetric.NewMetrics()
 				rm := out.ResourceMetrics().AppendEmpty()
 				res := rm.Resource()
-				res.Attributes().InsertString("k/r0", "vr0")
-				res.Attributes().InsertString("k/r1", "vr1")
-				res.Attributes().InsertString("k/n0", "vn0")
-				res.Attributes().InsertString("k/n1", "vn1")
+				res.Attributes().UpsertString("k/r0", "vr0")
+				res.Attributes().UpsertString("k/r1", "vr1")
+				res.Attributes().UpsertString("k/n0", "vn0")
+				res.Attributes().UpsertString("k/n1", "vn1")
 
 				ilm := rm.ScopeMetrics().AppendEmpty()
 				ilm.Metrics().EnsureCapacity(2)
@@ -264,14 +252,12 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initInt64PtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initInt64PtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 
 				return out
@@ -303,10 +289,10 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				out := pmetric.NewMetrics()
 				rm := out.ResourceMetrics().AppendEmpty()
 				res := rm.Resource()
-				res.Attributes().InsertString("k/r0", "vr0")
-				res.Attributes().InsertString("k/r1", "vr1")
-				res.Attributes().InsertString("k/n0", "vn0")
-				res.Attributes().InsertString("k/n1", "vn1")
+				res.Attributes().UpsertString("k/r0", "vr0")
+				res.Attributes().UpsertString("k/r1", "vr1")
+				res.Attributes().UpsertString("k/n0", "vn0")
+				res.Attributes().UpsertString("k/n1", "vn1")
 
 				ilm := rm.ScopeMetrics().AppendEmpty()
 				ilm.Metrics().EnsureCapacity(5)
@@ -314,32 +300,27 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName(fmt.Sprintf("l%sng_name", strings.Repeat("o", 256)))
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initInt64PtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initInt64PtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName(fmt.Sprintf("l%sng_name", strings.Repeat("o", 256)))
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName(fmt.Sprintf("l%sng_name", strings.Repeat("o", 256)))
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initInt64PtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initInt64PtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 
 				return out
@@ -371,10 +352,10 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				out := pmetric.NewMetrics()
 				rm := out.ResourceMetrics().AppendEmpty()
 				res := rm.Resource()
-				res.Attributes().InsertString("k/r0", "vr0")
-				res.Attributes().InsertString("k/r1", "vr1")
-				res.Attributes().InsertString("k/n0", "vn0")
-				res.Attributes().InsertString("k/n1", "vn1")
+				res.Attributes().UpsertString("k/r0", "vr0")
+				res.Attributes().UpsertString("k/r1", "vr1")
+				res.Attributes().UpsertString("k/n0", "vn0")
+				res.Attributes().UpsertString("k/n1", "vn1")
 
 				ilm := rm.ScopeMetrics().AppendEmpty()
 				ilm.Metrics().EnsureCapacity(1)
@@ -382,8 +363,7 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLongLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLongLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 
 				return out
@@ -409,17 +389,16 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				out := pmetric.NewMetrics()
 				rm := out.ResourceMetrics().AppendEmpty()
 				res := rm.Resource()
-				res.Attributes().InsertString("k/r0", "vr0")
-				res.Attributes().InsertString("k/r1", "vr1")
-				res.Attributes().InsertString("cloud.provider", conventions.AttributeCloudProviderAWS)
-				res.Attributes().InsertString("cloud.account.id", "efgh")
-				res.Attributes().InsertString("cloud.region", "us-east")
+				res.Attributes().UpsertString("k/r0", "vr0")
+				res.Attributes().UpsertString("k/r1", "vr1")
+				res.Attributes().UpsertString("cloud.provider", conventions.AttributeCloudProviderAWS)
+				res.Attributes().UpsertString("cloud.account.id", "efgh")
+				res.Attributes().UpsertString("cloud.region", "us-east")
 
 				ilm := rm.ScopeMetrics().AppendEmpty()
 				m := ilm.Metrics().AppendEmpty()
 				m.SetName("gauge_double_with_dims")
-				m.SetDataType(pmetric.MetricDataTypeGauge)
-				initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+				initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 
 				return out
 			},
@@ -442,18 +421,17 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				out := pmetric.NewMetrics()
 				rm := out.ResourceMetrics().AppendEmpty()
 				res := rm.Resource()
-				res.Attributes().InsertString("k/r0", "vr0")
-				res.Attributes().InsertString("k/r1", "vr1")
-				res.Attributes().InsertString("cloud.provider", conventions.AttributeCloudProviderAWS)
-				res.Attributes().InsertString("cloud.account.id", "efgh")
-				res.Attributes().InsertString("cloud.region", "us-east")
-				res.Attributes().InsertString("host.id", "abcd")
+				res.Attributes().UpsertString("k/r0", "vr0")
+				res.Attributes().UpsertString("k/r1", "vr1")
+				res.Attributes().UpsertString("cloud.provider", conventions.AttributeCloudProviderAWS)
+				res.Attributes().UpsertString("cloud.account.id", "efgh")
+				res.Attributes().UpsertString("cloud.region", "us-east")
+				res.Attributes().UpsertString("host.id", "abcd")
 
 				ilm := rm.ScopeMetrics().AppendEmpty()
 				m := ilm.Metrics().AppendEmpty()
 				m.SetName("gauge_double_with_dims")
-				m.SetDataType(pmetric.MetricDataTypeGauge)
-				initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+				initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 
 				return out
 			},
@@ -478,16 +456,15 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				out := pmetric.NewMetrics()
 				rm := out.ResourceMetrics().AppendEmpty()
 				res := rm.Resource()
-				res.Attributes().InsertString("k/r0", "vr0")
-				res.Attributes().InsertString("k/r1", "vr1")
-				res.Attributes().InsertString("cloud.provider", conventions.AttributeCloudProviderGCP)
-				res.Attributes().InsertString("host.id", "abcd")
+				res.Attributes().UpsertString("k/r0", "vr0")
+				res.Attributes().UpsertString("k/r1", "vr1")
+				res.Attributes().UpsertString("cloud.provider", conventions.AttributeCloudProviderGCP)
+				res.Attributes().UpsertString("host.id", "abcd")
 
 				ilm := rm.ScopeMetrics().AppendEmpty()
 				m := ilm.Metrics().AppendEmpty()
 				m.SetName("gauge_double_with_dims")
-				m.SetDataType(pmetric.MetricDataTypeGauge)
-				initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+				initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 
 				return out
 			},
@@ -509,17 +486,16 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				out := pmetric.NewMetrics()
 				rm := out.ResourceMetrics().AppendEmpty()
 				res := rm.Resource()
-				res.Attributes().InsertString("k/r0", "vr0")
-				res.Attributes().InsertString("k/r1", "vr1")
-				res.Attributes().InsertString("cloud.provider", conventions.AttributeCloudProviderGCP)
-				res.Attributes().InsertString("host.id", "abcd")
-				res.Attributes().InsertString("cloud.account.id", "efgh")
+				res.Attributes().UpsertString("k/r0", "vr0")
+				res.Attributes().UpsertString("k/r1", "vr1")
+				res.Attributes().UpsertString("cloud.provider", conventions.AttributeCloudProviderGCP)
+				res.Attributes().UpsertString("host.id", "abcd")
+				res.Attributes().UpsertString("cloud.account.id", "efgh")
 
 				ilm := rm.ScopeMetrics().AppendEmpty()
 				m := ilm.Metrics().AppendEmpty()
 				m.SetName("gauge_double_with_dims")
-				m.SetDataType(pmetric.MetricDataTypeGauge)
-				initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+				initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 
 				return out
 			},
@@ -546,28 +522,24 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initInt64PtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initInt64PtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					initDoublePtWithLabels(m.Sum().DataPoints().AppendEmpty())
 					initDoublePtWithDifferentLabels(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					initInt64PtWithLabels(m.Sum().DataPoints().AppendEmpty())
 				}
 
@@ -608,28 +580,24 @@ func Test_MetricDataToSignalFxV2(t *testing.T) {
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initDoublePtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initDoublePtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("gauge_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeGauge)
-					initInt64PtWithLabels(m.Gauge().DataPoints().AppendEmpty())
+					initInt64PtWithLabels(m.SetEmptyGauge().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_double_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					initDoublePtWithLabels(m.Sum().DataPoints().AppendEmpty())
 					initDoublePtWithDifferentLabels(m.Sum().DataPoints().AppendEmpty())
 				}
 				{
 					m := ilm.Metrics().AppendEmpty()
 					m.SetName("cumulative_int_with_dims")
-					m.SetDataType(pmetric.MetricDataTypeSum)
-					m.Sum().SetIsMonotonic(true)
+					m.SetEmptySum().SetIsMonotonic(true)
 					initInt64PtWithLabels(m.Sum().DataPoints().AppendEmpty())
 				}
 
@@ -695,11 +663,10 @@ func TestMetricDataToSignalFxV2WithTranslation(t *testing.T) {
 
 	md := pmetric.NewMetrics()
 	m := md.ResourceMetrics().AppendEmpty().ScopeMetrics().AppendEmpty().Metrics().AppendEmpty()
-	m.SetDataType(pmetric.MetricDataTypeGauge)
 	m.SetName("metric1")
-	dp := m.Gauge().DataPoints().AppendEmpty()
+	dp := m.SetEmptyGauge().DataPoints().AppendEmpty()
 	dp.SetIntVal(123)
-	dp.Attributes().InsertString("old.dim", "val1")
+	dp.Attributes().UpsertString("old.dim", "val1")
 
 	gaugeType := sfxpb.MetricType_GAUGE
 	expected := []*sfxpb.DataPoint{
@@ -735,11 +702,10 @@ func TestDimensionKeyCharsWithPeriod(t *testing.T) {
 
 	md := pmetric.NewMetrics()
 	m := md.ResourceMetrics().AppendEmpty().ScopeMetrics().AppendEmpty().Metrics().AppendEmpty()
-	m.SetDataType(pmetric.MetricDataTypeGauge)
 	m.SetName("metric1")
-	dp := m.Gauge().DataPoints().AppendEmpty()
+	dp := m.SetEmptyGauge().DataPoints().AppendEmpty()
 	dp.SetIntVal(123)
-	dp.Attributes().InsertString("old.dim.with.periods", "val1")
+	dp.Attributes().UpsertString("old.dim.with.periods", "val1")
 
 	gaugeType := sfxpb.MetricType_GAUGE
 	expected := []*sfxpb.DataPoint{

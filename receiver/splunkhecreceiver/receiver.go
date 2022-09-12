@@ -20,7 +20,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net"
 	"net/http"
 	"strings"
@@ -246,7 +246,7 @@ func (r *splunkReceiver) handleRawReq(resp http.ResponseWriter, req *http.Reques
 
 		if err != nil {
 			r.failRequest(ctx, resp, http.StatusBadRequest, errGzipReaderRespBody, 0, err)
-			_, _ = ioutil.ReadAll(req.Body)
+			_, _ = io.ReadAll(req.Body)
 			_ = req.Body.Close()
 			return
 		}
@@ -393,7 +393,7 @@ func (r *splunkReceiver) createResourceCustomizer(req *http.Request) func(resour
 		if strings.HasPrefix(accessToken, splunk.HECTokenHeader+" ") {
 			accessTokenValue := accessToken[len(splunk.HECTokenHeader)+1:]
 			return func(resource pcommon.Resource) {
-				resource.Attributes().InsertString(splunk.HecTokenLabel, accessTokenValue)
+				resource.Attributes().UpsertString(splunk.HecTokenLabel, accessTokenValue)
 			}
 		}
 	}

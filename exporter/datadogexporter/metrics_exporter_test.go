@@ -327,9 +327,9 @@ func createTestMetrics(additionalAttributes map[string]string) pmetric.Metrics {
 	rm := rms.AppendEmpty()
 
 	attrs := rm.Resource().Attributes()
-	attrs.InsertString("datadog.host.name", host)
+	attrs.UpsertString("datadog.host.name", host)
 	for attr, val := range additionalAttributes {
-		attrs.InsertString(attr, val)
+		attrs.UpsertString(attr, val)
 	}
 	ilms := rm.ScopeMetrics()
 
@@ -342,8 +342,7 @@ func createTestMetrics(additionalAttributes map[string]string) pmetric.Metrics {
 	// IntGauge
 	met := metricsArray.AppendEmpty()
 	met.SetName("int.gauge")
-	met.SetDataType(pmetric.MetricDataTypeGauge)
-	dpsInt := met.Gauge().DataPoints()
+	dpsInt := met.SetEmptyGauge().DataPoints()
 	dpInt := dpsInt.AppendEmpty()
 	dpInt.SetTimestamp(seconds(0))
 	dpInt.SetIntVal(222)
@@ -351,8 +350,7 @@ func createTestMetrics(additionalAttributes map[string]string) pmetric.Metrics {
 	// Histogram (delta)
 	met = metricsArray.AppendEmpty()
 	met.SetName("double.histogram")
-	met.SetDataType(pmetric.MetricDataTypeHistogram)
-	met.Histogram().SetAggregationTemporality(pmetric.MetricAggregationTemporalityDelta)
+	met.SetEmptyHistogram().SetAggregationTemporality(pmetric.MetricAggregationTemporalityDelta)
 	dpsDoubleHist := met.Histogram().DataPoints()
 	dpDoubleHist := dpsDoubleHist.AppendEmpty()
 	dpDoubleHist.SetCount(20)
