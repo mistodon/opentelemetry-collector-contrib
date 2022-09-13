@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: golang:1.17-alpine
+    image: golang:1.18-alpine
     commands:
       - apk add git make
       - GOOS=linux GOARCH=amd64 make otelcontribcol
