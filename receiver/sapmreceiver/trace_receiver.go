@@ -20,7 +20,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"sync"
 
@@ -37,7 +37,7 @@ import (
 
 var gzipWriterPool = &sync.Pool{
 	New: func() interface{} {
-		return gzip.NewWriter(ioutil.Discard)
+		return gzip.NewWriter(io.Discard)
 	},
 }
 
@@ -80,7 +80,7 @@ func (sr *sapmReceiver) handleRequest(req *http.Request) error {
 			for i := 0; i < rSpans.Len(); i++ {
 				rSpan := rSpans.At(i)
 				attrs := rSpan.Resource().Attributes()
-				attrs.UpsertString(splunk.SFxAccessTokenLabel, accessToken)
+				attrs.PutString(splunk.SFxAccessTokenLabel, accessToken)
 			}
 		}
 	}
