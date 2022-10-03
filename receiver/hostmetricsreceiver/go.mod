@@ -8,7 +8,7 @@ require (
 	github.com/shirou/gopsutil/v3 v3.22.7
 	github.com/stretchr/testify v1.8.0
 	go.opentelemetry.io/collector v0.59.0
-	go.opentelemetry.io/collector/pdata v0.59.0
+	go.opentelemetry.io/collector/pdata v0.61.0
 	go.opentelemetry.io/collector/semconv v0.59.0
 	go.uber.org/zap v1.23.0
 	golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664
