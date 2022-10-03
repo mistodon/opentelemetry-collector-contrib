@@ -21,7 +21,7 @@ require (
 )
 
 require (
-	go.opentelemetry.io/collector/pdata v0.59.0
+	go.opentelemetry.io/collector/pdata v0.61.0
 	go.opentelemetry.io/otel/sdk v1.9.0
 )
 
