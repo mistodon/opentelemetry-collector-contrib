@@ -6,8 +6,8 @@ require (
 	github.com/stretchr/testify v1.8.0
 	go.opentelemetry.io/collector v0.59.0
 	go.uber.org/zap v1.23.0
-	golang.org/x/oauth2 v0.0.0-20220622183110-fd043fe589d2
-	google.golang.org/grpc v1.49.0
+	golang.org/x/oauth2 v0.20.0
+	google.golang.org/grpc v1.65.0
 )
 
 require (
@@ -18,7 +18,6 @@ require (
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.15.9 // indirect
@@ -38,12 +37,11 @@ require (
 	go.opentelemetry.io/otel/metric v0.31.0 // indirect
 	go.opentelemetry.io/otel/trace v1.9.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
-	golang.org/x/net v0.0.0-20220624214902-1bab6f366d9e // indirect
-	golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664 // indirect
-	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/appengine v1.6.7 // indirect
+	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/text v0.15.0 // indirect
 	google.golang.org/genproto v0.0.0-20220804142021-4e6b2dfa6612 // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
+	google.golang.org/protobuf v1.34.1 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
