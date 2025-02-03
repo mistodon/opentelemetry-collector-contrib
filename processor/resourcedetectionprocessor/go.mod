@@ -4,14 +4,14 @@ go 1.18
 
 require (
 	cloud.google.com/go/compute v1.9.0
-	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v0.32.6
+	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.26.0
 	github.com/aws/aws-sdk-go v1.44.87
 	github.com/census-instrumentation/opencensus-proto v0.3.0
 	github.com/hashicorp/consul/api v1.14.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil v0.59.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders v0.59.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/opencensus v0.59.0
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.10.0
 	go.opentelemetry.io/collector v0.59.0
 	go.opentelemetry.io/collector/pdata v0.59.0
 	go.opentelemetry.io/collector/semconv v0.59.0
@@ -76,7 +76,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rs/cors v1.8.2 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/stretchr/objx v0.4.0 // indirect
+	github.com/stretchr/objx v0.5.2 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.34.0 // indirect
 	go.opentelemetry.io/otel v1.9.0 // indirect
@@ -85,7 +85,7 @@ require (
 	go.uber.org/atomic v1.10.0 // indirect
 	golang.org/x/net v0.0.0-20220722155237-a158d28d115b // indirect
 	golang.org/x/oauth2 v0.0.0-20220622183110-fd043fe589d2 // indirect
-	golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
