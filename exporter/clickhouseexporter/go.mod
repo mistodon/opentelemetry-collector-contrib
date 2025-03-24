@@ -1,6 +1,7 @@
 module github.com/open-telemetry/opentelemetry-collector-contrib/exporter/clickhouseexporter
 
 go 1.18
+toolchain go1.24.1
 
 require (
 	go.opentelemetry.io/collector v0.59.0
@@ -12,9 +13,9 @@ require go.uber.org/multierr v1.8.0
 
 require (
 	github.com/ClickHouse/clickhouse-go/v2 v2.3.0
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.10.0
 	go.opentelemetry.io/collector/pdata v0.59.0
-	go.opentelemetry.io/collector/semconv v0.59.0
+	go.opentelemetry.io/collector/semconv v0.122.1
 )
 
 require (
@@ -32,7 +33,7 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/knadh/koanf v1.4.3 // indirect
-	github.com/kr/pretty v0.3.0 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
