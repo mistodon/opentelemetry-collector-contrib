@@ -1,13 +1,14 @@
 module github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor
 
 go 1.18
+toolchain go1.24.1
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.59.0
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.10.0
 	go.opentelemetry.io/collector v0.59.0
 	go.opentelemetry.io/collector/pdata v0.59.0
-	go.opentelemetry.io/collector/semconv v0.59.0
+	go.opentelemetry.io/collector/semconv v0.122.1
 	go.uber.org/zap v1.23.0
 )
 
