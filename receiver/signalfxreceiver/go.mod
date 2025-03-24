@@ -1,6 +1,7 @@
 module github.com/open-telemetry/opentelemetry-collector-contrib/receiver/signalfxreceiver
 
 go 1.18
+toolchain go1.24.1
 
 require (
 	github.com/gorilla/mux v1.8.0
@@ -9,11 +10,11 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk v0.59.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/signalfx v0.59.0
 	github.com/signalfx/com_signalfx_metrics_protobuf v0.0.3
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.10.0
 	go.opencensus.io v0.23.0
 	go.opentelemetry.io/collector v0.59.0
 	go.opentelemetry.io/collector/pdata v0.59.0
-	go.opentelemetry.io/collector/semconv v0.59.0
+	go.opentelemetry.io/collector/semconv v0.122.1
 	go.uber.org/zap v1.23.0
 
 )
