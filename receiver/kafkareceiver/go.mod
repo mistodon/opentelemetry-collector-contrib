@@ -1,10 +1,10 @@
 module github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver
 
-go 1.18
+go 1.23
 
 require (
 	github.com/Shopify/sarama v1.36.0
-	github.com/apache/thrift v0.16.0
+	github.com/apache/thrift v0.22.0
 	github.com/gogo/protobuf v1.3.2
 	github.com/jaegertracing/jaeger v1.37.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.59.0
